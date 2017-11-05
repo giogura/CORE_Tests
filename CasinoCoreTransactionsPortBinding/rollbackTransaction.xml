@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="a7dc1d22-aa49-43ef-be23-3df3f126a7f8" isOneWay="false" action="" name="rollbackTransaction" bindingOperationName="rollbackTransaction" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="bc96bf91-ffa2-4a00-8406-236fa011e034fileName">rollbackTransaction</con:setting><con:setting id="a7dc1d22-aa49-43ef-be23-3df3f126a7f8fileName">rollbackTransaction</con:setting></con:settings><con:call id="9fdcf8db-f81a-48b5-b1cb-0973a672e487" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.40.45:80/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:rollbackTransaction>
+         <!--Optional:-->
+         <providerID>?</providerID>
+         <!--Optional:-->
+         <transactionOfproviderID xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <transactionID>?</transactionID>
+         <isCoreTransactionID>true</isCoreTransactionID>
+         <!--Optional:-->
+         <statusNote>?</statusNote>
+         <!--Optional:-->
+         <hash>?</hash>
+      </tran:rollbackTransaction>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/rollbackTransactionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation>

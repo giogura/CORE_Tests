@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="aa64a78f-b0af-4b94-b447-a4d67d72a39a" isOneWay="false" action="" name="checkTransactionStatus" bindingOperationName="checkTransactionStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="c1022a0a-7581-4436-9d5e-77d24f3c8213fileName">checkTransactionStatus</con:setting><con:setting id="aa64a78f-b0af-4b94-b447-a4d67d72a39afileName">checkTransactionStatus</con:setting></con:settings><con:call id="2c7602fb-ca80-4a88-bb04-ee4146567568" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.40.45:80/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:checkTransactionStatus>
+         <!--Optional:-->
+         <providerID>11e71eac-3d73-d8e0-ad4e-0050569aa6a5</providerID>
+         <!--Optional:-->
+         <transactionID>11e7b4cb-3d3f-7860-b185-0050569aa6a5</transactionID>
+         <isCoreTransactionID>true</isCoreTransactionID>
+         <!--Optional:-->
+         <hash>359ab548d391406b6a9a4cf52956bd19</hash>
+      </tran:checkTransactionStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/checkTransactionStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation>

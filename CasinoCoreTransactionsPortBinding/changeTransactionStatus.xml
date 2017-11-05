@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="df341013-a2a5-4eac-8487-135cdf95ecb6" isOneWay="false" action="" name="changeTransactionStatus" bindingOperationName="changeTransactionStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a657d981-2f31-4554-a50e-c85a1b1cab36fileName">changeTransactionStatus</con:setting><con:setting id="df341013-a2a5-4eac-8487-135cdf95ecb6fileName">changeTransactionStatus</con:setting></con:settings><con:call id="32f2a4b9-1777-4f2b-9415-b54a7e5966c3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.40.45:80/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:changeTransactionStatus>
+         <!--Optional:-->
+         <providerID>?</providerID>
+         <!--Optional:-->
+         <transactionID>?</transactionID>
+         <transactionNewStatus>?</transactionNewStatus>
+         <!--Optional:-->
+         <statusNote>?</statusNote>
+         <!--Optional:-->
+         <hash>?</hash>
+      </tran:changeTransactionStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/changeTransactionStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation>

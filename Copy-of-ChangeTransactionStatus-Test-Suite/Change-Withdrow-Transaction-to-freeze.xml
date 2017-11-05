@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="bd830839-c3c4-4a40-809b-82d847e6e43d" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Change Withdrow Transaction to freeze" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="bd830839-c3c4-4a40-809b-82d847e6e43dfileName">Change-Withdrow-Transaction-to-freeze</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="groovy" name="Parameter Calculations" id="dbc7ff8c-9011-4269-a769-876b309f8710"><con:settings/><con:config><script>import java.security.MessageDigest
+
+Random random = new Random();
+def str = new StringBuilder();
+
+def providerID = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/providerID[1]}' )
+def userID = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/userID[1]}' )
+def currencyID = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/currencyID[1]}' )
+def amount = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/amount[1]}' )
+def providerOppCode = random.nextInt();
+def shouldWaitForApproval = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/shouldWaitForApproval[1]}' )
+def channelType = context.expand( '${SOAP Request#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:withdrawMoney[1]/channelType[1]}' )
+
+str.append(providerID);
+str.append(userID);
+str.append(currencyID);
+str.append(amount);
+str.append(shouldWaitForApproval);
+str.append(providerOppCode);
+str.append(channelType);
+def key = context.expand( '${#Project#secret}' )
+
+
+str.append(key.toString());
+
+def digest = MessageDigest.getInstance("MD5");
+digest.update(str.toString().getBytes());
+def md5hash = new BigInteger(1, digest.digest()).toString(16).padLeft(32, '0');
+testRunner.testCase.testSuite.setPropertyValue("request_hash", md5hash);
+testRunner.testCase.testSuite.setPropertyValue("random_number", providerOppCode.toString());</script></con:config></con:testStep><con:testStep type="request" name="SOAP Request" id="c232a74c-e772-4ca6-974a-e1077cde4824"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CasinoCoreTransactionsPortBinding</con:interface><con:operation>withdrawMoney</con:operation><con:request name="SOAP Request" id="4ef9322b-5e63-488d-904c-37eea360046e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.21.125:8080/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:withdrawMoney>
+         <!--Optional:-->
+         <providerID>${#Project#providerID}</providerID>
+         <userID>${#Project#userID}</userID>
+         <currencyID>${#Project#currencyID}</currencyID>
+         <!--Optional:-->
+         <amount>100</amount>
+         <!--Optional:-->
+         <bonusAwardID xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <overrideBonusRule xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <shouldWaitForApproval>true</shouldWaitForApproval>
+         <!--Optional:-->
+         <providerUserID xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <providerServiceID xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <providerOppCode>${#TestSuite#random_number}</providerOppCode>
+         <!--Optional:-->
+         <additionalData xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <statusNote xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <!--Optional:-->
+         <channelType>1</channelType>
+         <!--Optional:-->
+         <hash>${#TestSuite#request_hash}</hash>
+      </tran:withdrawMoney>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="73746daa-b282-44d9-913d-6f4769672229"/><con:assertion type="MessageContentAssertion" id="b45f7d6d-123c-4eae-b76a-fe10629232b9" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://transactions.casinocore.singular.ge/';
+//ns1:withdrawMoneyResponse[1]/result[1]/responseCode[1]</con:xpath><con:element>responseCode</con:element><con:type>XmlInt</con:type><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>182</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>true</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://transactions.casinocore.singular.ge/';
+//ns1:withdrawMoneyResponse[1]/result[1]/percent[1]</con:xpath><con:element>percent</con:element><con:type>XmlDouble</con:type><con:operator>=</con:operator><con:enabled>false</con:enabled><con:expectedValue>0.0</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>true</con:numberType></con:elements><con:originalMessage><![CDATA[<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:withdrawMoneyResponse xmlns:ns2="http://transactions.casinocore.singular.ge/">
+         <result>
+            <responseCode>10</responseCode>
+            <transactionID>11e7b4c6-d01a-7a90-b185-0050569aa6a5</transactionID>
+            <totalAmount>500</totalAmount>
+            <percentAmount>0</percentAmount>
+            <percent>0.0</percent>
+         </result>
+      </ns2:withdrawMoneyResponse>
+   </S:Body>
+</S:Envelope>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="hash generator for change 1" id="941c3764-f387-4a92-9fa5-974fd60bd150"><con:settings/><con:config><script>import java.security.MessageDigest
+
+Random random = new Random()
+
+def providerID = context.expand( '${changeTransactionStatus request 1#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:changeTransactionStatus[1]/providerID[1]}' )
+def transactionID = context.expand( '${changeTransactionStatus request 1#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:changeTransactionStatus[1]/transactionID[1]}' )
+def transactionStatus = context.expand( '${changeTransactionStatus request 1#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:changeTransactionStatus[1]/transactionNewStatus[1]}' )
+def statusNote = context.expand( '${changeTransactionStatus request 1#Request#declare namespace tran=\'http://transactions.casinocore.singular.ge/\'; //tran:changeTransactionStatus[1]/statusNote[1]}' )
+
+
+def str = new StringBuilder();
+
+str.append(providerID);
+str.append(transactionID);
+str.append(transactionStatus);
+str.append(statusNote);
+
+def key = context.expand( '${#Project#secret}' )
+
+
+str.append(key.toString());
+
+def digest = MessageDigest.getInstance("MD5");
+digest.update(str.toString().getBytes());
+def md5hash = new BigInteger(1, digest.digest()).toString(16).padLeft(32, '0');
+return md5hash
+
+</script></con:config></con:testStep><con:testStep type="request" id="7b673f04-83da-443a-bfdf-f9364051be5d" name="changeTransactionStatus request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CasinoCoreTransactionsPortBinding</con:interface><con:operation>changeTransactionStatus</con:operation><con:request name="changeTransactionStatus request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="0f7c7c63-2c49-4a4c-9466-0c4754041dc0"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.21.125:8080/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:changeTransactionStatus>
+         <!--Optional:-->
+         <providerID>${#Project#providerID}</providerID>
+         <!--Optional:-->
+         
+         <transactionID>${SOAP Request#Response#declare namespace ns2='http://transactions.casinocore.singular.ge/'; //ns2:withdrawMoneyResponse[1]/result[1]/transactionID[1]}</transactionID><transactionNewStatus>5</transactionNewStatus>
+         <!--Optional:-->
+         <statusNote>test</statusNote><hash>${hash generator for change 1#result}</hash>
+         <!--Optional:-->
+         
+      </tran:changeTransactionStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="82e8e4ec-b304-41f3-9ffd-fca04627099a" name="SOAP Response"/><con:assertion type="MessageContentAssertion" id="988b8176-b288-4956-9c52-a7b165256fc9" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://transactions.casinocore.singular.ge/';
+//ns1:changeTransactionStatusResponse[1]/result[1]</con:xpath><con:element>result</con:element><con:type>XmlInt</con:type><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>10</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>true</con:numberType></con:elements><con:originalMessage><![CDATA[<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:changeTransactionStatusResponse xmlns:ns2="http://transactions.casinocore.singular.ge/">
+         <result>179</result>
+      </ns2:changeTransactionStatusResponse>
+   </S:Body>
+</S:Envelope>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/changeTransactionStatusRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase>

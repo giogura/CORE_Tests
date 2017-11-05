@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="1c57952c-e1b9-4748-9350-f71a788887b4" isOneWay="false" action="" name="withdrawMoney" bindingOperationName="withdrawMoney" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a563d3c9-c756-4e7d-9d0e-419172aa55f0fileName">withdrawMoney</con:setting><con:setting id="1c57952c-e1b9-4748-9350-f71a788887b4fileName">withdrawMoney</con:setting></con:settings><con:call id="b1708978-d0ba-4894-9e83-9ffa1ce0e2c3" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.40.45:80/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tran:withdrawMoney>\r
+         <!--Optional:-->\r
+         <providerID>?</providerID>\r
+         <userID>?</userID>\r
+         <currencyID>?</currencyID>\r
+         <!--Optional:-->\r
+         <amount>?</amount>\r
+         <!--Optional:-->\r
+         <bonusAwardID>?</bonusAwardID>\r
+         <!--Optional:-->\r
+         <overrideBonusRule>?</overrideBonusRule>\r
+         <!--Optional:-->\r
+         <shouldWaitForApproval>?</shouldWaitForApproval>\r
+         <!--Optional:-->\r
+         <providerUserID>?</providerUserID>\r
+         <!--Optional:-->\r
+         <providerServiceID>?</providerServiceID>\r
+         <!--Optional:-->\r
+         <providerOppCode>?</providerOppCode>\r
+         <!--Optional:-->\r
+         <additionalData>?</additionalData>\r
+         <!--Optional:-->\r
+         <requesterIP>?</requesterIP>\r
+         <!--Optional:-->\r
+         <statusNote>?</statusNote>\r
+         <!--Optional:-->\r
+         <channelType>?</channelType>\r
+         <!--Optional:-->\r
+         <hash>?</hash>\r
+      </tran:withdrawMoney>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/withdrawMoneyRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation>

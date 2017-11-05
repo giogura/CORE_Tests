@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="eea98fb8-7bb4-4507-83c0-a117899147e1" isOneWay="false" action="" name="depositMoney" bindingOperationName="depositMoney" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="851decc5-abf0-4ed2-bc62-eba700b9cf9ffileName">depositMoney</con:setting><con:setting id="eea98fb8-7bb4-4507-83c0-a117899147e1fileName">depositMoney</con:setting></con:settings><con:call id="2a7545c3-971e-4370-a412-78b268e3c630" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.16.40.45:80/CasinoCoreTransactions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transactions.casinocore.singular.ge/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:depositMoney>
+         <!--Optional:-->
+         <providerID>11e71eac-3d73-d8e0-ad4e-0050569aa6a5</providerID>
+         <userID>12056</userID>
+         <currencyID>2</currencyID>
+         <!--Optional:-->
+         <amount>100</amount>
+         <!--Optional:-->
+         <bonusAwardID>?</bonusAwardID>
+         <!--Optional:-->
+         <bonusLockedAmount>?</bonusLockedAmount>
+         <!--Optional:-->
+         <bonusAmount>?</bonusAmount>
+         <!--Optional:-->
+         <overrideBonusRule>?</overrideBonusRule>
+         <isCardVerification>false</isCardVerification>
+         <!--Optional:-->
+         <shouldWaitForApproval>false</shouldWaitForApproval>
+         <!--Optional:-->
+         <providerUserID>1</providerUserID>
+         <!--Optional:-->
+         <providerServiceID>?</providerServiceID>
+         <!--Optional:-->
+         <providerOppCode>2</providerOppCode>
+         <!--Optional:-->
+         <additionalData>?</additionalData>
+         <!--Optional:-->
+         <requesterIP>?</requesterIP>
+         <!--Optional:-->
+         <statusNote>?</statusNote>
+         <!--Optional:-->
+         <channelType>1</channelType>
+         <!--Optional:-->
+         <hash>2d8fbfa93203806ab99c5d9ba36f5060</hash>
+      </tran:depositMoney>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transactions.casinocore.singular.ge/CasinoCoreTransactions/depositMoneyRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation>
